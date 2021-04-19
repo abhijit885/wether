@@ -1,21 +1,43 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
+import React from 'react';
+import {
+  StyleSheet,
+  View,
+  Text,
+  StatusBar,
+} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createStackNavigator } from '@react-navigation/stack';
+import Search from './screens/Search'
+import Home from './screens/Home'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import Splash from './screens/Splach';
+import RootStack from './screens/RootStack'
+const Tab = createBottomTabNavigator()
+const Stack = createStackNavigator();
+function SPLASH({ navigation }) {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <Stack.Navigator
+        initialRouteName="Splash"
+      >
+        <Stack.Screen name="Splash" component={Splash} />
+
+      </Stack.Navigator>
+    </>
   );
 }
+const App = () => {
+  return (
+    <>
+      <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
+      <NavigationContainer>
+        <RootStack />
+      </NavigationContainer>
+    </>
+  );
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+export default App;
